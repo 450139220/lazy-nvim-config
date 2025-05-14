@@ -13,7 +13,10 @@ return {
   -- nvim tree
   {
     "nvim-tree/nvim-tree.lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "christoomey/vim-tmux-navigator"
+    },
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     keys = {
       { "<leader>f", "<cmd>NvimTreeToggle<CR>", desc = "toggle file tree" },
