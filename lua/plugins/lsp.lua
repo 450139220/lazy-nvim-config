@@ -18,6 +18,28 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
 
+      vim.diagnostic.config({
+        virtuaL_text = {
+          spacing = 2,
+          prefix = "●",
+          max_width = 50,
+          severity = nil,
+        },
+        float = {
+          border = "single",
+          source = "always",
+          header = "Diagnostic",
+          prefix = "",
+        },
+        signs = true,
+      })
+
+      vim.api.nvim_set_keymap(
+        "n", "<leader>e",
+        "<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<CR>",
+        { noremap = true, silent = true }
+      )
+
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
       lspconfig["cssls"].setup({})
