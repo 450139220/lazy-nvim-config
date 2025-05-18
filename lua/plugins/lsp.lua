@@ -20,7 +20,6 @@ return {
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
-     
       lspconfig["cssls"].setup({})
       lspconfig["css_variables"].setup({})
       lspconfig["cssmodules_ls"].setup({})
@@ -34,6 +33,8 @@ return {
         capabilities = require("cmp_nvim_lsp").default_capabilities()
       })
       lspconfig["volar"].setup({})
+
+      lspconfig["gopls"].setup({})
     end
   },
 

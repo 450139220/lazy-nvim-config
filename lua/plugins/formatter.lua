@@ -20,11 +20,23 @@ return {
         html = {
           require("formatter.filetypes.html").prettier
         },
+        -- not for work
+        go = {
+          require("formatter.filetypes.go").gofumpt
+        },
       }
     })
 
     vim.api.nvim_create_autocmd("BufWritePost", {
-      pattern = { "*.ts", "*.tsx", "*.js", "*.jsx", "*.html" },
+      pattern = {
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx",
+        "*.html",
+        -- not for work
+        "*.go",
+      },
       command = "FormatWrite"
     })
   end
