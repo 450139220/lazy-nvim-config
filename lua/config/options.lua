@@ -17,3 +17,5 @@ vim.mouse = "a"
 vim.clipboard = "unnamedplus"
 
 vim.termguicolors = true
+
+vim.cursorline = true
