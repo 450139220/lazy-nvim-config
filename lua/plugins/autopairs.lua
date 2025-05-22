@@ -10,6 +10,7 @@ return {
           disabled_filetypes = {
             "javascript",
             "typescript",
+            "go"
           }
         }
       }
