@@ -135,8 +135,39 @@ return {
             { name = 'path' },
           }, {
             { name = 'buffer' },
-          })
-        })
+          }),
+sorting = {
+  priority_weight = 2,
+  comparators = {
+    function(entry1, entry2)
+      -- Only boost "log" snippet to top
+      local is_log_snippet = function(entry)
+        return entry.completion_item.label == "log"
+          and entry.source.name == "luasnip"
+      end
+
+      if is_log_snippet(entry1) and not is_log_snippet(entry2) then
+        return true
+      elseif not is_log_snippet(entry1) and is_log_snippet(entry2) then
+        return false
+      end
+
+      return nil
+    end,
+
+    -- default comparators
+    require("cmp.config.compare").offset,
+    require("cmp.config.compare").exact,
+    require("cmp.config.compare").score,
+    require("cmp.config.compare").recently_used,
+    require("cmp.config.compare").kind,
+    require("cmp.config.compare").sort_text,
+    require("cmp.config.compare").length,
+    require("cmp.config.compare").order,
+  }
+}
+
+      })
     end
   }
 }
