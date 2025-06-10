@@ -20,6 +20,9 @@ return {
         html = {
           require("formatter.filetypes.html").prettier
         },
+        css = {
+          require("formatter.filetypes.css").prettier
+        },
         -- not for work
         go = {
           require("formatter.filetypes.go").gofumpt
@@ -34,6 +37,7 @@ return {
         "*.js",
         "*.jsx",
         "*.html",
+        "*.css",
         -- not for work
         "*.go",
       },
