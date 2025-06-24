@@ -18,27 +18,28 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
 
-      vim.diagnostic.config({
-        virtuaL_text = {
-          spacing = 2,
-          prefix = "●",
-          max_width = 50,
-          severity = nil,
-        },
-        float = {
-          border = "single",
-          source = "always",
-          header = "Diagnostic",
-          prefix = "",
-        },
-        signs = true,
-      })
+      -- ##### Here are the buit-in diagnostic configurations. #####
+      -- vim.diagnostic.config({
+      --   virtuaL_text = {
+      --     spacing = 2,
+      --     prefix = "●",
+      --     max_width = 50,
+      --     severity = nil,
+      --   },
+      --   float = {
+      --     border = "single",
+      --     source = "always",
+      --     header = "Diagnostic",
+      --     prefix = "",
+      --   },
+      --   signs = true,
+      -- })
 
-      vim.api.nvim_set_keymap(
-        "n", "<leader>e",
-        "<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<CR>",
-        { noremap = true, silent = true }
-      )
+      -- vim.api.nvim_set_keymap(
+      --   "n", "<leader>e",
+      --   "<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<CR>",
+      --   { noremap = true, silent = true }
+      -- )
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -51,8 +52,13 @@ return {
       lspconfig["jsonls"].setup({})
       lspconfig["lua_ls"].setup({})
       lspconfig["tailwindcss"].setup({})
+      local on_attach = function (_, bufnr)
+        local opts = {buffer = bufnr, desc = "Lspsaga Hover"}
+        vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
+      end
       lspconfig["ts_ls"].setup({
-        capabilities = require("cmp_nvim_lsp").default_capabilities()
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        on_attach = on_attach,
       })
       lspconfig["volar"].setup({})
 
