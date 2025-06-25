@@ -20,5 +20,14 @@ return {
       inc_rename = false,
       lsp_doc_border = false,
     },
+    messages = {
+      enabled = false,
+    },
+    popupmenu = {
+      enabled = false,
+    },
+    notify = {
+      enabled = false,
+    },
   },
 }
