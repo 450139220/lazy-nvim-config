@@ -27,6 +27,15 @@ return {
         go = {
           require("formatter.filetypes.go").gofumpt
         },
+        rust = {
+          function ()
+            return {
+              exe = "rustfmt",
+              args = { "--emit=stdout" },
+              stdin = true,
+            }
+          end
+        }
       }
     })
 
@@ -40,6 +49,7 @@ return {
         "*.css",
         -- not for work
         "*.go",
+        "*.rs"
       },
       command = "FormatWrite"
     })

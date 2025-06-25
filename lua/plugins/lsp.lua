@@ -79,6 +79,19 @@ return {
       lspconfig["volar"].setup({})
 
       lspconfig["gopls"].setup({})
+      lspconfig["rust_analyzer"].setup({
+        settings = {
+          ["rust-analyzer"] = {
+            checkOnSave = true,
+            cargo = {
+              allFeatures = true,
+            },
+            procMacro = {
+              enable = true,
+            },
+          }
+        }
+      })
     end
   },
 
